@@ -1,23 +1,26 @@
 package ru.avalon.java.dev.j10.labs;
 
-import ru.avalon.java.dev.j10.labs.shapes.Shape;
+import ru.avalon.java.dev.j10.labs.shapes.*;
+import ru.avalon.java.dev.j10.labs.shapes.ShapeMaker;
 
 public class Main {
 
     public static void main(String[] args) {
-        Shape[] shapes = null;
 
-        /*
-         * TODO: Выполнить действия над массивом 'shapes'
-         *
-         * 1. Проинициализировать переменную 'shapes' массивом
-         *    содержащим 10 произвольных фигур. Массив должен
-         *    содержать экземпляры классов Circle, Rectangle
-         *    и Triangle.
-         *
-         * 2. Найти в массиве 'shapes' фигуру с максимальной
-         *    площадью. Для поиска фигуры необходимо создать
-         *    статический метод в текущем классе (Main).
-         */
+        // Инициализация массива из 10 элементов
+        Shape[] shapes = new Shape[9];
+
+        // Создание 10 произвольных фигур
+        for (int i = 0; i < shapes.length; i++) {
+            shapes[i] = ShapeMaker.getNewShape();
+        }
+
+        System.out.println("Кругов: " + Circle.count + " шт.");
+        System.out.println("Четырехугольников: " + Rectangle.count + " шт.");
+        System.out.println("Треугольников: " + Triangle.count + " шт.");
+
     }
+
+
+
 }

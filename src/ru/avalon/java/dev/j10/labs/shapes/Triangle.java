@@ -1,24 +1,50 @@
 package ru.avalon.java.dev.j10.labs.shapes;
 
-/**
- * Представление о треугольнике.
- * <p>
- * Треуго́льник (в евклидовом пространстве) — геометрическая
- * фигура, образованная тремя отрезками, которые соединяют
- * три точки, не лежащие на одной прямой. Указанные три
- * точки называются вершинами треугольника, а отрезки —
- * сторонами треугольника. Часть плоскости, ограниченная
- * сторонами, называется внутренностью треугольника: нередко
- * треугольник рассматривается вместе со своей внутренностью
- * (например, для определения понятия площади).
- *
- * @see <a href="https://ru.wikipedia.org/wiki/%D0%A2%D1%80%D0%B5%D1%83%D0%B3%D0%BE%D0%BB%D1%8C%D0%BD%D0%B8%D0%BA">Треугольник</a>
- */
-public class Triangle {
+public class Triangle implements Polygon {
 
-    /*
-     * TODO: Реализовать класс 'Triangle'
-     * 1. Используйте наследование.
-     * 2. Реализуйте все абстрактные методы.
-     */
+    public static int count;
+
+    // координаты точек углов треугольника ABC
+    private final float x1, y1;
+    private final float x2, y2;
+    private final float x3, y3;
+
+    // стороны треугольника ABC
+    private final float lineAB;
+    private final float lineBC;
+    private final float lineCA;
+
+
+    Triangle() {
+        this.x1 = Point.getX();
+        this.x2 = Point.getX();
+        this.x3 = Point.getX();
+        this.y1 = Point.getY();
+        this.y2 = Point.getY();
+        this.y3 = Point.getY();
+        this.lineAB = (float) (Math.sqrt((x2 - x1)*(x2 - x1) + (y2 - y1)*(y2 - y1)));
+        this.lineBC = (float) (Math.sqrt((x3 - x2)*(x3 - x2) + (y3 - y2)*(y3 - y2)));
+        this.lineCA = (float) (Math.sqrt((x1 - x3)*(x1 - x3) + (y1 - y3)*(y1 - y3)));
+        count++;
+    }
+
+    // переопределение методы базового класса
+    @Override
+    public float getArea() {
+        return (float)(Math.sqrt((this.getPerimeter() / 2)
+                * ((this.getPerimeter() / 2) - lineAB)
+                * ((this.getPerimeter() / 2) - lineBC)
+                * ((this.getPerimeter() / 2) - lineCA)));
+    }
+
+    @Override
+    public float getPerimeter() {
+        return lineAB + lineBC + lineCA;
+    }
+
+    @Override
+    public int getRotation() {
+        return 1;
+    }
+
 }
